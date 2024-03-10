@@ -12,10 +12,14 @@ import {
   FieldValues,
   formSchema,
   MODELS,
+  OTHER_MODEL,
   STEPS,
 } from "@/app/types";
+import { generatePaperCard } from "@/app/actions";
+import { usePaperCard } from "@/components/paper-card-provider";
 
 export function PaperCardForm() {
+  const [_, setPaperCard] = usePaperCard();
   const form = useForm<FieldValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -26,8 +30,19 @@ export function PaperCardForm() {
     },
   });
 
-  function onSubmit(values: FieldValues) {
-    console.log(values);
+  async function onSubmit(values: FieldValues) {
+    const models = values.models as string[];
+    if (values.models.includes(OTHER_MODEL)) {
+      models.push(values.modelOther);
+    }
+
+    const res = await generatePaperCard({
+      steps: values.steps,
+      models,
+      disclaimers: values.disclaimers,
+    });
+
+    setPaperCard(res);
   }
 
   return (
@@ -71,9 +86,7 @@ export function PaperCardForm() {
                   type={"text"}
                   placeholder={"Model Name"}
                   {...form.register("modelOther", {
-                    disabled: !form
-                      .watch("models")
-                      .includes(MODELS[MODELS.length - 1]),
+                    disabled: !form.watch("models").includes(OTHER_MODEL),
                   })}
                 />
               </FormItem>
