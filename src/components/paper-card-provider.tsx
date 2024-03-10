@@ -20,7 +20,7 @@ interface PaperCardProviderProps {
 }
 
 export function PaperCardProvider({ children }: PaperCardProviderProps) {
-  const paperCard = useState<PaperCard>();
+  const paperCard = useState<PaperCard | undefined>(undefined);
 
   return (
     <PaperCardContext.Provider value={paperCard}>

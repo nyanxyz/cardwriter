@@ -29,7 +29,7 @@ export function PaperCard() {
   const [paperCard] = usePaperCard();
 
   return (
-    <Card className={"w-96"}>
+    <Card className={"w-[90vw] md:w-[70vw] lg:w-96"}>
       <CardHeader>
         <CardTitle>Paper Card</CardTitle>
       </CardHeader>
@@ -51,7 +51,7 @@ export function PaperCard() {
         </RadioGroup>
 
         <Textarea
-          rows={8}
+          rows={10}
           placeholder={"Results will be displayed here"}
           disabled={!paperCard}
           value={paperCard ? paperCard[format] : ""}

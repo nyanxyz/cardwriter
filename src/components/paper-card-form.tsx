@@ -33,7 +33,7 @@ export function PaperCardForm() {
   async function onSubmit(values: FieldValues) {
     const models = values.models as string[];
     if (values.models.includes(OTHER_MODEL)) {
-      models.push(values.modelOther);
+      models.push(values.modelOther ?? "");
     }
 
     const res = await generatePaperCard({

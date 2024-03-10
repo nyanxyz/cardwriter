@@ -41,7 +41,7 @@ export const DESCRIPTIONS_BY_DISCLAIMER = {
 export const formSchema = z.object({
   steps: z.array(z.enum(STEPS)).min(1),
   models: z.array(z.enum(MODELS)).min(1),
-  modelOther: z.string(),
+  modelOther: z.string().optional(),
   disclaimers: z.array(z.enum(DISCLAIMERS)).min(1),
 });
 
