@@ -38,10 +38,10 @@ export function PaperCard() {
         <RadioGroup
           value={format}
           onValueChange={setFormat as any}
-          className={"flex space-x-1.5"}
+          className={"flex flex-wrap gap-x-3 gap-y-1.5"}
         >
           {FORMAT_OPTIONS.map(({ value, label }) => (
-            <div key={value} className={"flex items-center space-x-1.5"}>
+            <div key={value} className={"flex items-center gap-x-1.5"}>
               <RadioGroupItem id={radioId(value)} key={value} value={value} />
               <Label htmlFor={radioId(value)} className={"text-sm"}>
                 {label}

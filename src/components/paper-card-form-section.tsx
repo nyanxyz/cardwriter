@@ -8,10 +8,13 @@ export function PaperCardFormSection() {
 
   return (
     <div
-      className={cn("flex-col space-y-8 flex-1 p-8 overflow-y-auto", {
-        flex: !paperCard,
-        "lg:flex hidden": paperCard,
-      })}
+      className={cn(
+        "flex-col space-y-8 flex-1 p-8 overflow-y-auto h-fit lg:h-full",
+        {
+          flex: !paperCard,
+          "lg:flex hidden": paperCard,
+        },
+      )}
     >
       <header className={"flex flex-col space-y-1"}>
         <h1 className={"text-3xl font-bold"}>Cardwriter</h1>
