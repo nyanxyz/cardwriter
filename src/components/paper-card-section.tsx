@@ -1,4 +1,4 @@
-import { PaperCard } from "@/app/paper-card";
+import { PaperCard } from "@/components/paper-card";
 
 export function PaperCardSection() {
   return (

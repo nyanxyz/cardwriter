@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import { PaperCardForm } from "@/app/paper-card-form";
+import { PaperCardForm } from "@/components/paper-card-form";
 
 export function PaperCardFormSection() {
   return (

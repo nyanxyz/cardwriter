@@ -1,5 +1,5 @@
-import { PaperCardSection } from "@/app/paper-card-section";
-import { PaperCardFormSection } from "@/app/paper-card-form-section";
+import { PaperCardSection } from "@/components/paper-card-section";
+import { PaperCardFormSection } from "@/components/paper-card-form-section";
 
 export default function Home() {
   return (
