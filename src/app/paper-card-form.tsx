@@ -94,7 +94,7 @@ export function PaperCardForm() {
           ))}
         </CheckboxGroupFormField>
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Generate PaperCard</Button>
       </form>
     </Form>
   );
