@@ -33,6 +33,7 @@ export function PaperCardForm() {
   async function onSubmit(values: FieldValues) {
     const models = values.models as string[];
     if (values.models.includes(OTHER_MODEL)) {
+      models.splice(models.indexOf(OTHER_MODEL), 1);
       models.push(values.modelOther ?? "");
     }
 

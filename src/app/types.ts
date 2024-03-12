@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { LLMs } from "@/constants/llm_dict_240311";
 
 export const STEPS = [
   "Key Ideas",
@@ -14,14 +15,7 @@ export const STEPS = [
 
 export const OTHER_MODEL = "Other (please specify)" as const;
 
-export const MODELS = [
-  "GPT-3",
-  "ChatGPT-3.5",
-  "GPT-4",
-  "Gemini",
-  "Claude-3",
-  OTHER_MODEL,
-] as const;
+export const MODELS = [...LLMs.map((llm) => llm.model), OTHER_MODEL];
 
 export const DISCLAIMERS = [
   "Accountability",
@@ -40,7 +34,7 @@ export const DESCRIPTIONS_BY_DISCLAIMER = {
 
 export const formSchema = z.object({
   steps: z.array(z.enum(STEPS)).min(1),
-  models: z.array(z.enum(MODELS)).min(1),
+  models: z.array(z.string()).min(1),
   modelOther: z.string().optional(),
   disclaimers: z.array(z.enum(DISCLAIMERS)).min(1),
 });
