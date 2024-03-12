@@ -1,7 +1,6 @@
 import { PaperCard } from "@/components/paper-card";
 import { cn } from "@/lib/utils";
 import { usePaperCard } from "@/components/paper-card-provider";
-import { Button } from "@/components/ui/button";
 
 export function PaperCardSection() {
   const [paperCard, setPaperCard] = usePaperCard();
@@ -17,16 +16,6 @@ export function PaperCardSection() {
       )}
     >
       <PaperCard />
-
-      <Button
-        className={"lg:hidden underline"}
-        variant={"link"}
-        onClick={() => {
-          setPaperCard(undefined);
-        }}
-      >
-        Back to form
-      </Button>
     </div>
   );
 }

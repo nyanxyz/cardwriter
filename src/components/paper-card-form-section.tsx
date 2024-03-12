@@ -1,19 +1,12 @@
 import { Separator } from "@/components/ui/separator";
 import { PaperCardForm } from "@/components/paper-card-form";
-import { usePaperCard } from "@/components/paper-card-provider";
 import { cn } from "@/lib/utils";
 
 export function PaperCardFormSection() {
-  const [paperCard] = usePaperCard();
-
   return (
     <div
       className={cn(
-        "flex-col space-y-8 flex-1 p-8 overflow-y-auto h-fit lg:h-full",
-        {
-          flex: !paperCard,
-          "lg:flex hidden": paperCard,
-        },
+        "flex-col space-y-8 flex-1 p-8 lg:overflow-y-auto h-fit lg:h-full",
       )}
     >
       <header className={"flex flex-col space-y-1"}>

@@ -43,6 +43,12 @@ export function PaperCardForm() {
     });
 
     setPaperCard(res);
+    setTimeout(() => {
+      scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
+    }, 100);
   }
 
   return (

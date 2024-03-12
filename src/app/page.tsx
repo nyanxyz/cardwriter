@@ -7,7 +7,7 @@ import { PaperCardProvider } from "@/components/paper-card-provider";
 export default function Home() {
   return (
     <PaperCardProvider>
-      <div className={"flex h-full"}>
+      <div className={"flex flex-col lg:flex-row h-full"}>
         <PaperCardFormSection />
         <PaperCardSection />
       </div>
