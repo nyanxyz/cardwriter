@@ -74,7 +74,7 @@ class TextGenerator {
 
 class PlainTextGenerator extends TextGenerator {
   generateModelText() {
-    const models = this.models.map((modelName, index) => {
+    const models = this.models.map((modelName) => {
       const model = LLMs.find((llm) => llm.model === modelName);
       if (!model) {
         return modelName;
@@ -109,7 +109,7 @@ class MarkdownTextGenerator extends TextGenerator {
       if (!model) {
         return modelName;
       } else {
-        return `[${model.model}](${model.url}) version ${model.version} provided by ${model.provider} (terms of usage: [${model.terms}](${model.terms}))`;
+        return `[${model.model}](${model.url}) version ${model.version} provided by ${model.provider} ([terms of usage](${model.terms}))`;
       }
     });
     const joinedModels = this.join(models);
