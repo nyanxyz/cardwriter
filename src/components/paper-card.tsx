@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { usePaperCard } from "@/components/paper-card-provider";
@@ -27,6 +27,22 @@ const radioId = (name: string) => `radio-${name}`;
 export function PaperCard() {
   const [format, setFormat] = useState<keyof TPaperCard>("plain");
   const [paperCard] = usePaperCard();
+
+  const [text, setText] = useState<Record<keyof TPaperCard, string>>({
+    plain: "",
+    latex: "",
+    markdown: "",
+  });
+
+  useEffect(() => {
+    if (!paperCard) return;
+
+    setText({
+      plain: paperCard.plain,
+      latex: paperCard.latex,
+      markdown: paperCard.markdown,
+    });
+  }, [paperCard]);
 
   return (
     <Card className={"w-[90vw] md:w-[70vw] lg:w-96"}>
@@ -54,7 +70,10 @@ export function PaperCard() {
           rows={10}
           placeholder={"Results will be displayed here"}
           disabled={!paperCard}
-          value={paperCard ? paperCard[format] : ""}
+          value={text[format]}
+          onChange={(e) => {
+            setText((prev) => ({ ...prev, [format]: e.target.value }));
+          }}
         />
       </CardContent>
 
@@ -64,7 +83,7 @@ export function PaperCard() {
           disabled={!paperCard}
           onClick={() => {
             if (!paperCard) return;
-            navigator.clipboard.writeText(paperCard[format]);
+            navigator.clipboard.writeText(text[format]);
 
             toast("Copied to clipboard!");
           }}
