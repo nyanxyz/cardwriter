@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   title: "Cardwriter",
   description:
     "Cardwriter is a simple tool for declaring your usage or non-usage of generative AI in the writing process :)",
+  openGraph: {
+    title: "Cardwriter",
+    description:
+      "Cardwriter is a simple tool for declaring your usage or non-usage of generative AI in the writing process :)",
+  },
 };
 
 export default function RootLayout({
