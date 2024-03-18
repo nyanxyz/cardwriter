@@ -9,7 +9,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Cardwriter",
-  description: "Cardwriter",
+  description:
+    "Cardwriter is a simple tool for declaring your usage or non-usage of generative AI in the writing process :)",
 };
 
 export default function RootLayout({
