@@ -32,6 +32,8 @@ export function PaperCardForm() {
     },
   });
 
+  const didNotUse = form.watch("steps").includes(DIDNT_USE);
+
   async function onSubmit(values: FieldValues) {
     const models = values.models as string[];
     if (values.models.includes(OTHER_MODEL)) {
@@ -71,9 +73,7 @@ export function PaperCardForm() {
             <CheckboxGroupFormField.Control
               key={step}
               value={step}
-              disabled={
-                form.watch("steps").includes(DIDNT_USE) && step !== DIDNT_USE
-              }
+              disabled={didNotUse && step !== DIDNT_USE}
               tooltip={STEP_DESCRIPTIONS[step]}
             />
           ))}
@@ -88,7 +88,11 @@ export function PaperCardForm() {
             }
           >
             {MODELS.map((model) => (
-              <CheckboxGroupFormField.Control key={model} value={model} />
+              <CheckboxGroupFormField.Control
+                key={model}
+                value={model}
+                disabled={didNotUse}
+              />
             ))}
           </CheckboxGroupFormField>
 
@@ -102,7 +106,8 @@ export function PaperCardForm() {
                   type={"text"}
                   placeholder={"Model Name"}
                   {...form.register("modelOther", {
-                    disabled: !form.watch("models").includes(OTHER_MODEL),
+                    disabled:
+                      didNotUse || !form.watch("models").includes(OTHER_MODEL),
                   })}
                 />
               </FormItem>
@@ -116,7 +121,11 @@ export function PaperCardForm() {
           title={"3. Check all the disclaimers you can provide:"}
         >
           {DISCLAIMERS.map((disclaimer) => (
-            <CheckboxGroupFormField.Control key={disclaimer} value={disclaimer}>
+            <CheckboxGroupFormField.Control
+              key={disclaimer}
+              value={disclaimer}
+              disabled={didNotUse}
+            >
               <span className={"font-bold"}>{disclaimer}</span>:{" "}
               {DESCRIPTIONS_BY_DISCLAIMER[disclaimer]}
             </CheckboxGroupFormField.Control>
