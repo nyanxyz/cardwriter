@@ -47,7 +47,7 @@ export function PaperCard() {
   return (
     <Card className={"w-[90vw] md:w-[70vw] lg:w-96"}>
       <CardHeader>
-        <CardTitle>Paper Card</CardTitle>
+        <CardTitle>PaperCard</CardTitle>
       </CardHeader>
 
       <CardContent className={"flex flex-col space-y-3"}>
