@@ -8,11 +8,13 @@ import { Input } from "@/components/ui/input";
 import { CheckboxGroupFormField } from "@/components/checkbox-group-form-field";
 import {
   DESCRIPTIONS_BY_DISCLAIMER,
+  DIDNT_USE,
   DISCLAIMERS,
   FieldValues,
   formSchema,
   MODELS,
   OTHER_MODEL,
+  STEP_DESCRIPTIONS,
   STEPS,
 } from "@/app/types";
 import { generatePaperCard } from "@/app/actions";
@@ -62,11 +64,18 @@ export function PaperCardForm() {
           control={form.control}
           name={"steps"}
           title={
-            "1. Check all steps you have practically used generative AI in the writing process:"
+            "1. Check all steps you have practically used generative AI in the writing process (or Check \"No, I didn't use\" if you haven't used):"
           }
         >
           {STEPS.map((step) => (
-            <CheckboxGroupFormField.Control key={step} value={step} />
+            <CheckboxGroupFormField.Control
+              key={step}
+              value={step}
+              disabled={
+                form.watch("steps").includes(DIDNT_USE) && step !== DIDNT_USE
+              }
+              tooltip={STEP_DESCRIPTIONS[step]}
+            />
           ))}
         </CheckboxGroupFormField>
 
