@@ -88,7 +88,7 @@ class PlainTextGenerator extends TextGenerator {
       if (!model) {
         return modelName;
       } else {
-        return `${model.model} version ${model.version} provided by ${model.provider} (terms of usage: ${model.terms})`;
+        return `${model.model} version ${model.version} provided by ${model.provider} (terms of usage: ${model.terms}), accessed from {ddmmyy1} to {ddmmyy2}.`;
       }
     });
     const joinedModels = this.join(models);
@@ -103,7 +103,7 @@ class LatexTextGenerator extends TextGenerator {
       if (!model) {
         return modelName;
       } else {
-        return `${model.model}\\footnote{\\url{${model.url}}} version ${model.version} provided by ${model.provider} (terms of usage: \\url{${model.terms}})`;
+        return `${model.model}\\footnote{\\url{${model.url}}} version ${model.version} provided by ${model.provider} (terms of usage: \\url{${model.terms}}), accessed from {ddmmyy1} to {ddmmyy2}.`;
       }
     });
     const joinedModels = this.join(models);
@@ -118,7 +118,7 @@ class MarkdownTextGenerator extends TextGenerator {
       if (!model) {
         return modelName;
       } else {
-        return `[${model.model}](${model.url}) version ${model.version} provided by ${model.provider} ([terms of usage](${model.terms}))`;
+        return `[${model.model}](${model.url}) version ${model.version} provided by ${model.provider} ([terms of usage](${model.terms})), accessed from {ddmmyy1} to {ddmmyy2}.`;
       }
     });
     const joinedModels = this.join(models);
