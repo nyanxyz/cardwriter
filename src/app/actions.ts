@@ -1,6 +1,7 @@
 "use server";
 
 import { LLMs } from "@/constants/llm_dict_240311";
+import { DIDNT_USE } from "@/app/types";
 
 interface Body {
   steps: string[];
@@ -41,7 +42,9 @@ class TextGenerator {
 
   generateStepText() {
     const joinedSteps = this.join(this.steps);
-    return `We used machine assistance for the writing of this manuscript, especially in ${joinedSteps}.`;
+    return joinedSteps
+      ? `We used machine assistance for the writing of this manuscript, especially in ${joinedSteps}.`
+      : "";
   }
 
   generateModelText(): string {
@@ -64,11 +67,17 @@ class TextGenerator {
   }
 
   public execute() {
+    if (this.steps.includes(DIDNT_USE)) {
+      return "The authors did not use any assistance from generative AI in writing this manuscript.";
+    }
+
     return [
       this.generateStepText(),
       this.generateModelText(),
       this.generateDisclaimerText(),
-    ].join(" ");
+    ]
+      .join(" ")
+      .trim();
   }
 }
 
